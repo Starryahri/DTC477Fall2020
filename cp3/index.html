@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Test Game</title>
+	<style>
+		#myCanvas {
+			border: 1px solid black;
+			width: 600px;
+			height: 600px;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas width="400" height="400" id="myCanvas"></canvas>
+
+	<script>
+		//Code was taken from http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/
+		//used to create a simple canvas game to collect carrots instead of capturing goblins.
+
+		// grab dom element
+		let c = document.getElementById('myCanvas');
+
+		//context identifier defining the drawing context associated to the canvas - 2D, webgl (3D)
+		let ctx = c.getContext("2d");
+
+		//clear a rectangle of the canvas - wipe clean the slate for new drawing
+		
+		ctx.width = 512;
+		ctx.height = 480;
+		ctx.clearRect(0, 0, ctx.width, ctx.height);
+		
+		//background image
+		let bgReady = false;
+		let bgImage = new Image();
+		bgImage.onload = function () {
+			bgReady = true;
+		};
+
+		bgImage.src = "img/grass.png";
+
+		//player
+		let playerReady = false;
+		let playerImage = new Image();
+		playerImage.onload = function () {
+			playerReady = true;
+		};
+
+		playerImage.src = "img/player.png";
+
+		//carrot
+		let carrotReady = false;
+		let carrotImage = new Image();
+		carrotImage.onload = function () {
+			carrotReady = true;
+		};
+
+		carrotImage.src = "img/carrot.png";
+
+
+
+
+		//game objects
+		let hero = {
+			speed: 256, //pixels/sec
+			x: 0,
+			y: 0
+		};
+
+		let carrot = {
+			x: 0,
+			y: 0
+		};
+
+		let carrotsForaged = 0;
+
+		// keyboard controls
+		let keysDown = {};
+
+		addEventListener("keydown", function (e) {
+			keysDown[e.keyCode] = true;
+		}, false);
+
+		addEventListener("keyup", function (e) {
+			delete keysDown[e.keyCode];
+		}, false);
+
+		//reset game
+
+		const reset = () => {
+			hero.x = ctx.width / 2;
+			hero.y = ctx.height / 2;
+		}
+
+		//throw carrot elsewhere randomly
+		carrot.x = 32 + (Math.random() * (ctx.width - 64));
+		carrot.y = 32 + (Math.random() * (ctx.height - 64));
+
+
+		//update objects
+
+		const update = modifier => {
+			if (38 in keysDown) {
+				hero.y -= hero.speed * modifier;
+			}
+
+			if (40 in keysDown) {
+				hero.y += hero.speed * modifier;
+			}
+
+			if (37 in keysDown) {
+				hero.x -= hero.speed * modifier;
+			}
+
+			if (39 in keysDown) {
+				hero.x += hero.speed * modifier;
+			}
+
+
+			//collision detection
+
+			if (hero.x <= (carrot.x + 32)
+				&& carrot.x <= (hero.x + 32)
+				&& hero.y <= (carrot.y + 32)
+				&& carrot.y <= (hero.y + 32)
+				) {
+				++carrotsForaged;
+				reset();
+			}
+		};
+
+		// drawing everything
+		const render = () => {
+			if (bgReady) {
+				ctx.drawImage(bgImage, 0, 0);
+			}
+
+			if (playerReady) {
+				ctx.drawImage(playerImage, hero.x, hero.y);
+			}
+
+			if (carrotReady) {
+				ctx.drawImage(carrotImage, carrot.x, carrot.y);
+			}
+
+			// score
+			ctx.fillStyle = "rgb(250, 250, 250";
+			ctx.font = "24px Helvetica";
+			ctx.textAlign = "left";
+			ctx.textBaseline = "top";
+			ctx.fillText("Carrots Foraged: " + carrotsForaged, 32, 32);
+		};
+
+		let main = () => {
+			let now = Date.now();
+			let delta = now-then;
+
+			update (delta / 1000);
+			render();
+			then = now;
+
+			requestAnimationFrame(main);
+		}
+
+
+		let then = Date.now();
+		reset();
+		main();
+
+	</script>
+
+
+	</body>
+</html>

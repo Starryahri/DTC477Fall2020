@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Main Pokeball Set</title>
+	<style>
+		#myCanvas {
+			border: 1px solid black;
+			width: 600px;
+			height: 600px;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas width="400" height="400" id="myCanvas"></canvas>
+
+	<script>
+		//helper functions
+		//Random number generator
+		const getRandInt = (min, max) => {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		//Degree to radian converter because I'm lazy and sometimes people like degrees
+		const rad = (degree) => {
+			return (Math.PI / 180) * degree;
+		}
+
+
+
+		// grab dom element
+		let c = document.getElementById('myCanvas');
+
+		//context identifier defining the drawing context associated to the canvas - 2D, webgl (3D)
+		let ctx = c.getContext("2d");
+
+		//clear a rectangle of the canvas - wipe clean the slate for new drawing
+		ctx.clearRect(0, 0, ctx.width, ctx.height);
+		ctx.font = '32px serif';
+		ctx.fillText("Thank you for using this PC!", 17, 50);
+		ctx.fillText("Transfering your pokemon...", 20, 375);
+		function drawPokeball () {
+			//Main pokeball body
+			ctx.beginPath();
+			ctx.arc(200, 200, 100, 0,  2 * Math.PI);
+			ctx.lineWidth = 20;
+	        ctx.strokeStyle = "black";
+	        ctx.stroke();
+			ctx.closePath();
+
+			//Pokeball top
+			ctx.beginPath();
+			ctx.arc(200, 200, 100, 1 * Math.PI, 0);
+			ctx.fillStyle = "red";
+			ctx.fill();
+			ctx.closePath();
+
+			//Pokeball bottom
+			ctx.beginPath();
+			ctx.arc(200, 200, 100, 0, 1 * Math.PI);
+			ctx.fillStyle = "white";
+			ctx.fill();
+			ctx.closePath();
+
+			//Pokeball line
+			ctx.beginPath();
+			ctx.moveTo(100, 200);
+			ctx.lineTo(300, 200);
+			ctx.lineWidth = 10;
+			ctx.stroke();
+			ctx.translate(200, 200);
+			ctx.rotate(rad(45));
+			ctx.translate(-200, -200);
+			ctx.stroke();
+			ctx.closePath();
+
+			//Pokeball button
+			ctx.beginPath();
+			ctx.arc(200, 200, 20, 0, 2 * Math.PI);
+			ctx.fillStyle = "white";
+			ctx.fill();
+			ctx.lineWidth = 5;
+			ctx.strokeStyle = "black";
+			ctx.stroke();
+			ctx.closePath;
+
+			//Text
+
+		} // End of Pokeball drawing
+		
+		// function to run to redraw face
+	    function animatePoke() {
+
+			ctx.clearRect(0, 0, ctx.width, ctx.height);//clear canvas
+			num = getRandInt(0, 1);
+
+			if(num === 0) {
+				drawPokeball();
+			} else {
+				drawGreat();
+			}
+
+	    	//drawPokeball();
+	    	//setTimeout(animateFace, 1000);
+	    	//requestAnimationFrame(animateFace);
+		}
+
+		setInterval(animatePoke, 100);
+
+
+	</script>
+
+
+	</body>
+</html>

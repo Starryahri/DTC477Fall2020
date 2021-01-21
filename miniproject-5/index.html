@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head> 
+	<meta charset="utf-8">
+	<script src="script.js"></script>
+	
+	<style>
+
+      h1 {
+        text-align: center;
+      }
+      #box {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 5px;
+      }
+
+      #box div {
+         height: 200px;
+          padding: 3%;
+          border: 1px solid black;
+
+      }
+
+  </style>
+
+</head>
+<body>
+
+  <button onclick="createChars()">CLICK</button>
+
+
+  <h1></h1>
+  <div id="box"></div>
+
+	  
+
+
+<script> 
+
+
+//////DnD Character Class
+
+
+  class dndChar  {
+    constructor(race, charClass, level, alignment, equipment, spells) {
+      this._race = race;
+      this._charClass = charClass;
+      this._level = level;
+      this._alignment = alignment;
+      this._equipment = equipment;
+      this._spells = spells;
+      }
+
+
+  ///GETTERS
+  // when you call the getters you don't use parantheses 
+
+      get race() {
+        return this._race.split(", ");
+      }
+
+      get charClass() {
+        return this._charClass.split(", ");
+      }
+
+      get level() {
+        return this._level.split(", ");
+      }
+
+      get alignment() {
+        return this._alignment.split(", ");
+      }
+
+      get equipment() {
+        return this._equipment.split(", ");
+      }
+
+      get spells() {
+        return this._spells.split(", ");
+      }
+
+    
+
+  ///SETTERS
+  // when you call the setters you don't use parantheses 
+  
+
+      generateChar() {
+
+
+        for (let i = 0; i <= 8; i++){  
+
+            let arrayList = [this.race, this.charClass, this.level, this.alignment, this.equipment, this.spells];
+            let randomNums = [];
+            let randomNums2 = [];
+            //let randomSpecial = Math.floor(Math.random() * 7);
+
+           arrayList.forEach(function(item, index){
+               randomNums[index] = Math.floor(Math.random() * (item.length-1));
+               randomNums2[index] = Math.floor(Math.random() * (item.length-1));
+           });   
+
+            document.querySelector("h1").innerHTML = `DnD Character Generator`;
+            document.querySelector("#box").innerHTML += `<div id="char${i+1}"><strong>Character ${i+1}</strong><br>
+            Race: ${this.race[randomNums[0]]}<br>
+            Class: ${this.charClass[randomNums[1]]}<br>
+            Level: ${this.level[randomNums[2]]}<br>
+            Alignment: ${this.alignment[randomNums[3]]}<br>
+            Equipment: ${this.equipment[randomNums[4]]}<br>
+            Spells: ${this.spells[randomNums[5]]}<br></div>`;
+
+            //if ( i+1 === randomSpecial) { document.querySelector(`#day${i+1}`).innerHTML = `<strong>Day${i+1}</strong><br>Eat Cake and Ice Cream!`; }
+
+         } //closes loop
+          
+          document.querySelector("button").style.display = 'none';
+
+      } // closes generateChar
+  } // closes dndChar class
+
+
+
+
+function createChars() {
+
+  document.querySelector("#box").innerHTML = '';
+  let race = "dwarf, elf, halfling, human, dragonborn, gnome, half-elf, half-orc, tiefling";
+  let charClass ="barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard";
+  let level = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20";
+  let alignment = "lawful good, neutral good, chaotic good, lawful neutral, neutral, chaotic neutral, lawful evil, neutral evil, chaotic evil";
+  let equipment = "dagger, light hammer, mace, spear, shortbow, greatsword, longsword, crossbow, pike, battleaxe sling, warhammer, trident"
+  let spells = "Prestidigitation, Healing Word, Dimension Door, Antimagic Field, Earthquake, Banishing Smite, Meteor Swarms";
+
+      /////INSTANCE OF CLASS
+
+      const user = new dndChar(race, charClass, level, alignment, equipment, spells);
+      user.generateChar();
+
+      
+
+} // closes createChars function
+
+
+
+
+
+
+
+
+  </script>
+
+
+
+</body>
+</html>

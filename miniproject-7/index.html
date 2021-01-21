@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>weather app</title>
+	<style>
+   </style>
+ </head>
+
+ <body>
+    <p>The best wine for the right temperature</p>
+ 	<div>
+ 		<input type="text" id="city">
+ 		<button id="submitWeather">Search City</button>
+ 	</div>
+
+ 	<div id="show"></div>
+ 	<div id="error"></div>
+   
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+
+
+
+        $(document).ready(function() {
+
+    	//key 5d403b6b84ed210aa64a032618aa4156
+        $('#submitWeather').click(function() {
+        	let city = $('#city').val();
+        	if (city != '') {
+
+        		$.ajax({
+
+        			url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=5d403b6b84ed210aa64a032618aa4156`,
+        			type: "GET",
+        			dataType: "jsonp",
+        			success: function(response) {
+        				console.log(response);
+        				
+                        const getRandInt = (min, max) => {
+                            return Math.floor(Math.random() * (max - min + 1)) + min;
+                        }
+
+                        let description  = response.weather[0].description;
+                        let temp  = response.main.temp;
+                        let icon  = response.weather[0].icon;
+                        let humidity  = response.main.humidity;
+                        let randNum = getRandInt(0, 2);
+
+                        //array of wines based off temp (roughly seasons)
+                        let wineArr = [['Chardonnay', 'Pinot Noir', 'Prosecco'], //spring
+                                       ['Riesling', 'Pinot Grigio', 'Sauvignon Blanc'], //summer
+                                       [['Beaujolais', 'Pinot Noir', 'Merlot']], //fall
+                                       ['Viognier', 'Gruner Veltliner', 'Roussanne']]; //winter
+                        //2-d array ex: wineArr[0][randnum]
+                        console.log(temp);
+
+                        $('#show').html(`<img src="http://openweathermap.org/img/w/${icon}.png"> <br> Currently there is ${description}, the temperature is ${temp} and the humdidity is ${humidity}`);
+                        //four different temp levels for wine based on temp
+                        if (temp <= 40) {
+                            $('#show').html(`Brrrrr! Its freezing outside! How about trying a nice ${wineArr[3][randNum]}.`);
+                        } else if (temp > 40 && temp <= 50) {
+                            ('#show').html(`It is ${temp}. Its a little chilly out! How about trying a nice ${wineArr[2][randNum]}.`);
+                        } else if (temp > 50 && temp <= 70) {
+                            ('#show').html(`It is ${temp}. Its a nice balmy day. How about trying a nice ${wineArr[1][randNum]}.`);
+                        } else {
+                            ('#show').html(`Wow its a scorcher! How about trying a nice ${wineArr[0][randNum]}.`);
+                        }
+
+        				
+        			} //closes function
+
+        		});
+
+
+        	}
+        	else {
+        		$('#error').html("Field cannot be empty");
+        	}
+        
+        });
+
+
+
+
+    });
+
+    </script>
+ </body>
+ </html>

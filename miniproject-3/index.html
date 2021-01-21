@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>What Thing Are You Quiz</title>
+	<style>
+		body {
+			background-color: grey;
+		}
+		#submit, #reset  {
+			margin-top: 20px;
+			text-align: center;
+		}
+
+		#answer  {
+			display: none;
+			position: fixed;
+			right: 30%;
+			top: 10%;
+			width: 30%;
+			border: 2px solid black;
+			padding: 1%;
+			background-color: tan;
+		}
+
+		#container {
+			border: 1px ridge brown;
+			border-radius: 1%;
+			width: 50%;
+			margin: auto;
+			background-image: url("./img/parchment.jpg");
+			background-size: auto;
+			background-position: center;
+		}
+
+		#intro{
+			display: block;
+			border: 10px double white;
+			width: 60%;
+			border-radius: 25%;
+			margin: auto;
+		}
+
+		#answer img {
+			display: block;
+			border: 10px double black;
+			width: 40%;
+			border-radius: 25%;
+			margin: auto;
+			background-color: white;
+		}
+
+		#answer div {
+			text-align: center;
+		}
+
+		h1 {
+			text-align: center;
+		}
+		  
+	</style>
+
+		
+</head>
+<body>
+	<div id="container">
+	<h1>What RPG Archetype Are You?</h1>
+    
+    <img id="intro" src="img/dnd.jpg">
+    <form name="quiz">
+  		<section class="questions" id="quest1">
+           <h3>A commoner on the street is being bothered by some ruffians, what do you do?<br></h3>
+
+		  <div>  
+			<input type="radio" name="question1" value="1">Step in politely ask them to quit it.
+		  </div>
+
+		   <div>
+			<input type="radio" name="question1" value="2">Tell them to stop or else they'll get what's coming to them.
+		   </div>
+
+			<div>
+				<input type="radio" name="question1" value="3">Threaten to blow them up with your magical instrument.
+			</div>
+			
+			<div>
+				<input type="radio" name="question1" value="4">Fly into a mad rage beating up everyone including the commoner you were supposed to help.
+			</div>
+			
+		</section>
+		
+			
+	    <section class="questions" id="quest2">
+           <h3>You are in a nice tavern in town, what do you do?<br></h3>
+
+		  <div>  
+			<input type="radio" name="question2" value="1">You ask for the local specialty dish and tip extra.
+		  </div>
+
+		   <div>
+			<input type="radio" name="question2" value="2">You start gambling away in the corner with a few shady fellows
+		   </div>
+
+			<div>
+				<input type="radio" name="question2" value="3">You get up on a table and start belting out a tune detailing your adventures
+			</div>
+			
+			<div>
+				<input type="radio" name="question2" value="4">You start a bar fight because someone looked at you funny
+			</div>
+			
+		</section>
+			
+			
+	    <section class="questions" id="quest3">
+           <h3>You are running away from an angry mob of orcs but the bridge up ahead has been destroyed what do you do?<br></h3>
+
+		  <div>  
+			<input type="radio" name="question3" value="1">You try to reason with them but they aren't having it and beat you up.
+		  </div>
+
+		   <div>
+			<input type="radio" name="question3" value="2">The silly orcs fell into YOUR trap, as they fall into a pit of your own design.  
+		   </div>
+
+			<div>
+				<input type="radio" name="question3" value="3">You turn around and with nothing but power of music you put on such a grand performance the orcs forget why they were chasing you.
+			</div>
+			
+			<div>
+				<input type="radio" name="question3" value="4">Seeing the bridge gone angers you greatly so much so that with pure rage you jump the chasm. 
+			</div>
+			
+		</section>
+		
+		
+	    <section class="questions" id="quest4">
+           <h3>You finally encounter the big bad evil guy what do you do?<br></h3>
+
+		  <div>  
+			<input type="radio" name="question4" value="1">With your holy powers and pure goodness you the make the bbeg turn to a life of good
+		  </div>
+
+		   <div>
+			<input type="radio" name="question4" value="2">You con the evil boss out of their entire treasure with a game of tic tac toe.
+		   </div>
+
+			<div>
+				<input type="radio" name="question4" value="3">Serenade the boss with your charasmatic charm into running off with you into the sunset to live the rest of your days.
+			</div>
+			
+			<div>
+				<input type="radio" name="question4" value="4">You beat the ever loving crap out of bad guy
+			</div>
+			
+		</section>
+
+
+
+
+	    <section class="questions" id="quest5">
+           <h3>How do others see you?<br></h3>
+
+		  <div>  
+			<input type="radio" name="question5" value="1">Super nice, a stand up person
+		  </div>
+
+		   <div>
+			<input type="radio" name="question5" value="2">You paid them off so they will say nice things about you
+		   </div>
+
+			<div>
+				<input type="radio" name="question5" value="3">Very musically gifted
+			</div>
+			
+			<div>
+				<input type="radio" name="question5" value="4">You tend to have quite a bit of a temper
+			</div>
+			
+		</section>
+
+
+	    <section class="questions" id="quest6">
+           <h3>How do you see yourself?<br></h3>
+
+		  <div>  
+			<input type="radio" name="question6" value="1">Super nice, a stand up person
+		  </div>
+
+		   <div>
+			<input type="radio" name="question6" value="2">You paid them off so they will say nice things about you
+		   </div>
+
+			<div>
+				<input type="radio" name="question6" value="3">Very musically gifted
+			</div>
+			
+			<div>
+				<input type="radio" name="question6" value="4">You tend to have quite a bit of a temper
+			</div>
+			
+		</section>
+
+
+	
+
+	  
+			<div id="submit"> 
+			 <input type="button" value="What are You?" onClick="computeForm(this.form)">
+			</div> 
+			
+			<div id="reset"> 
+			 <input type="button" value="Reset" onClick="reset(this.form)">
+			</div> 
+
+
+
+    </form>
+    
+    <div id="answer"></div>
+    </div>
+   <script>
+   
+   	let result;
+
+	let resultsArray =  [
+		//0 Silver Knight
+			['A Silver Knight', 'img/knight.jpg', 'You do everything in your power for the greater good and you got a silver tongue to go with it. An amazing power to sweet talk your way out of anything to get things done.'],
+		//1 Sorrcerer
+			['Sorcerer', 'img/sorcerer.png', 'You use your magical ways to conjure up amazing fantasies. Also you have a slight penchant for blowing stuff up but its all in good fun.'],
+		//2 Silent Protagonist
+			['Silent Protagonist', 'img/silent.png', 'You are kind and pretty much an all around great person. You are a blank slate to most people but as they get to know you they realize you are so full of personality. That personality is world changing, it changes even the hearts of friends, rivals, and enemies. '],
+		//3 Rambo Knight
+			['A Rambunctious Knight', 'img/knight.jpg', 'You do everything in your power for the greater good. Sometimes you got to break some eggs to make an omellete.'],
+		//4 Charming Rogue
+			['Charming Rogue', 'img/rogue.png', 'You are charming to your friends but a nightmare for your enemies. Smart and witty you always know how to get in the last word.'],
+		//5	Loudmouth Rival
+			['Loudmouth Rival', 'img/loud.jpg', 'On the outside strangers think you are an abrasive annoying person but under that tough exterior lies a heart of gold. It just takes a bit to digging to get there.'],
+		//6 Slightly Sly Rogue
+			['Slightly Sly Rogue', 'img/rogue.png', 'A trickster who likes to have fun here and there. You have a nice temperament but make no mistake people should not cross you. You have a few tricks up your sleeves now and again.'],
+		//7 Lovely Bard
+			['Lovely Bard', 'img/bard.png', 'The people love you. Get a good tune down and people will flock to you to hear your every word. Even bad guys think your prose is not bad.'],
+		//8 Whimsical Bard
+			['Whimsical bard', 'img/bard.png', 'You sing a song for people here and there. A little mysterious but also can be read like a book.'],
+		//9 Tempramental Rogue
+			['Temperatmental Rogue', 'img/rogue.png', 'You are good on your feet and got the street smarts but sometimes you can fly off the handle. Mouthing off to your advesary only leads to trouble or a new opportunity for you.'],
+		//10 Big Bad Evil Guy
+			['BBEG', 'img/bbeg.jpg', 'Yup you are the bad guy. That is not a bad thing though! It comes with its perks like litterally everyone cowers in fear before you and you do not take shit from anybody. You are a little chaotic that kind of comes with the territory. Have fun ordering the minons around and ruling the world. That is until some takes usurps your throne.'],
+		//11 Brutish Bard
+			['Brutish Barbarian', 'img/barbarian.png', 'You tend to get angry at the slightest thing but at times even through your rage you pull off some clutch moves.'],
+		//12 Enchanting Bard
+			['Enchanting Bard', 'img/bard.png', 'Your way with words has no comparison. You can litterally sing away any problem and solve the worlds problem with the power of music.'],
+		//13 //Engraged Barbarian
+			['Engraged Barbarian', 'img/barbarian.png', 'You figure smash first ask questions later. People do not want to get on your badside otherwise you might squish them. SMASH SMASH RAWR'],
+		//14 Knight
+			['A Rightous Knight', 'img/knight.jpg', 'You do everything in your power for the greater good. You try to do things by the book but sometimes you go above the law to see justice served.'],
+		//15 Tricky Rogue
+			['Tricky Rogue', 'img/rogue.png', 'A trickster who likes to have fun here and there. You have a nice temperament but make no mistake people should not cross you.'],
+		//16 Free Knight
+			['Free Knight', 'img/knight.jpg', 'You hold to your own code, but when you see an injustice you act. You might play around but at the end of the day you do the right thing.'],
+		//17 Error Check
+			['Commoner', 'img/that.png', 'You should not be going on an adventure its dangerous to go alone!']
+			];
+  			  
+  	function close() {
+  		let x = document.getElementById("answer");
+  		if (x.style.display === "none") {
+  			x.style.display = "block";
+  		} else {
+  			x.style.display = "none";
+  		}
+  	}
+
+    function computeForm(form) {
+        
+	  let questNum = 1;
+	  let righteous = 0;
+	  let perverse = 0;
+	  let orderly = 0;
+	  let chaotic = 0;
+	  let outwardvalue= 0;
+	  let inwardValue = 0;
+      
+
+	  for (questNum = 1; questNum <= 6; questNum++) {
+		  let radioInputs = document.forms['quiz'].elements['question'+ questNum];
+			   for (let i = 0; i < radioInputs.length; i++) {
+				   if (radioInputs[i].checked) {
+					  choice = radioInputs[i].value;
+					  }  // closes condition on checked
+			   } // closes for loop on radios
+					  
+				if (choice == "1") {
+                   righteous++;
+				}
+				if (choice == "2") {
+				   perverse++;
+				}
+				if (choice == "3") {
+				   orderly++;
+				}
+				if (choice == "4") {
+				   chaotic++;
+				}
+		      
+	    }  // closes for loop on questions
+	    
+	    //test if picking only first a of each q should have a r=1, p=2, o=0, c=3: out=-1 in=-1
+	    
+	     outwardValue= righteous - perverse;   
+	     /* a positive value: outward, active, (righteous)
+	       a negative value : outward, analytical (perverse)*/
+	       
+		 inwardValue = orderly - chaotic;
+		 /* a positive value :  inward, expressive (orderly)
+		   a negative value : inward, inquisitive  (chaotic)*/ 
+			  
+        
+    
+      if (outwardValue > 0 && inwardValue > 0 && righteous > orderly) {
+         // mainly righteous, also a bit orderly 
+         result = 0;
+      }
+      else if (outwardValue > 0 && inwardValue > 0 && orderly > righteous) {
+         // mainly expressive, also active
+         result =  1;
+      }
+      else if (outwardValue > 0 && inwardValue > 0 && orderly == righteous) {
+         // expressive and active equally
+         result = 2;
+      }
+      else if (outwardValue > 0 && inwardValue < 0 && righteous > chaotic) {
+         // mainly righteous, also chaotic
+         result = 3;
+      }
+      else if (outwardValue > 0 && inwardValue < 0 && chaotic > righteous) {
+         // mainly inquisitive, also active
+         result =  4;
+      }
+      else if (outwardValue > 0 && inwardValue < 0 && chaotic == righteous) {
+         // inquisitive and active equally
+         result = 5;
+      }
+      else if (outwardValue < 0 && inwardValue > 0 && perverse > orderly) {
+         // mainly perverse, also orderly
+         result = 6;
+      }
+      else if (outwardValue < 0 && inwardValue > 0 && orderly > perverse) {
+         // mainly expressive, also analytical
+         result = 7;
+      }
+      else if (outwardValue < 0 && inwardValue > 0 && orderly == perverse) {
+         // expressive and analytical equally
+         result = 8;
+      }
+      else if (outwardValue < 0 && inwardValue < 0 && perverse > chaotic) {
+         // mainly analytical, also inquisitive
+         result = 9;
+      }
+      else if (outwardValue < 0 && inwardValue < 0 && chaotic > perverse) {
+         // mainly inquisitive, also analytical
+         result = 10;
+      }
+      else if (outwardValue < 0 && inwardValue < 0 && chaotic == perverse) {
+         // inquisitive and analytical equally
+         result = 11;
+      }
+      else if (outwardValue == 0 && inwardValue > 0) {
+         // neutral active/analytical, expressive
+         result = 12;
+      }
+      else if (outwardValue == 0 && inwardValue < 0) {
+         // neutral active/analytical, inquisitive
+         result = 13;
+      }
+      else if (outwardValue > 0 && inwardValue == 0) {
+         // neutral expressive/inquisitive, active
+         result = 14;
+      }
+      else if (outwardValue < 0 && inwardValue == 0) {
+         // neutral expressive/inquisitive, analytical
+         result = 15;
+      }
+      else if (outwardValue == 0 && inwardValue == 0) {
+         // neutral
+         result = 16;
+      }
+      else {
+         // no result found
+         result = 17;
+      }
+        
+
+      
+     // pop-up an answer
+      document.getElementById("answer").style.display = "block";
+      document.getElementById("answer").innerHTML = `<img src='${resultsArray[result][1]}'><br><h1>${resultsArray[result][0]}</h1><br>${resultsArray[result][2]}.`;
+    // 	<div id="close"><input type="button" value="Close" onClick="close()"></div>
+    
+ 
+    
+    }  // this closes computeForm
+    
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<html>
+<head> 
+<style>
+
+body {
+    background: black url("./backgroundmoon.jpg") no-repeat fixed right;
+    background-size: cover;
+    width: 100%;
+}
+
+div {
+    color: white;
+
+}
+#container {
+    width: 100%;
+    text-align: left;
+}
+#poem {
+    padding-left: 50px;
+    position: fixed;
+	width: 65%;
+    top: 45%;
+    margin: 1% auto;
+	font-size: 1.5em;
+	}
+
+button {
+    background-image: url('./highwayman.jpg');
+    background-position: center;
+    background-size: 100%;
+    position: fixed;
+    top: -9%;
+    left: 76%;
+    margin: 10% -50px;
+    background-color: gray;
+    text-decoration: none;
+    border-radius: 100%;
+    font-weight: bolder;
+    font-size: 1.0rem;
+    color: red;
+    height: 150px;
+    width: 150px;
+    border-color: white;
+}
+
+/*.message {
+    max-width: 300px;
+    padding: 3%;
+    border: 1px solid black;
+    color: white;
+}
+*/
+
+</style>
+
+
+</head>
+<body>
+<button class="button" id="begin" onclick="makeLyric()">The Highwayman</button>
+<div id="container">
+    <div id="poem"></div>    
+</div>
+<audio id="audio" loop>
+    <source src="slopesoftheblessure.mp3" type="audio/mpeg">
+</audio>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+    let someText = [
+`The wind was a torrent of darkness among the gusty trees.`,   
+`The moon was a ghostly galleon tossed upon cloudy seas.`,   
+`The road was a ribbon of moonlight over the purple moor,`,   
+`And the highwayman came riding-`,
+`        Riding-riding-`,
+`The highwayman came riding, up to the old inn-door.`,
+`He'd a French cocked-hat on his forehead, a bunch of lace at his chin,`,   
+`A coat of the claret velvet, and breeches of brown doe-skin.`,
+`They fitted with never a wrinkle. His boots were up to the thigh.`,   
+`And he rode with a jewelled twinkle,`,
+`         His pistol butts a-twinkle,`,
+`His rapier hilt a-twinkle, under the jewelled sky.`,
+`Over the cobbles he clattered and clashed in the dark inn-yard.`,
+`He tapped with his whip on the shutters, but all was locked and barred.`,   
+`He whistled a tune to the window, and who should be waiting there`,   
+`But the landlord's black-eyed daughter,`,
+`         Bess, the landlord's daughter,`,
+`Plaiting a dark red love-knot into her long black hair.`,
+`And dark in the dark old inn-yard a stable-wicket creaked`,
+`Where Tim the ostler listened. His face was white and peaked.`,   
+`His eyes were hollows of madness, his hair like mouldy hay,`,   
+`But he loved the landlord’s daughter,`,
+`         The landlord's red-lipped daughter.`,
+`Dumb as a dog he listened, and he heard the robber say—`,
+`“One kiss, my bonny sweetheart, I’m after a prize to-night,`,
+`But I shall be back with the yellow gold before the morning light;`,
+`Yet, if they press me sharply, and harry me through the day,`,   
+`Then look for me by moonlight,`,
+`         Watch for me by moonlight,`,
+`I'll come to thee by moonlight, though hell should bar the way.”`,
+`He rose upright in the stirrups. He scarce could reach her hand,`,
+`But she loosened her hair in the casement. His face burnt like a brand`,
+`As the black cascade of perfume came tumbling over his breast;`,   
+`And he kissed its waves in the moonlight,`,
+`         (O, sweet black waves in the moonlight!)`,
+`Then he tugged at his rein in the moonlight, and galloped away to the west.`
+ ];
+
+//setting a few variables
+let audio = document.getElementById("audio");
+
+
+let messageClass = ['message', 'reply'];
+let i = -1;
+
+    function getRandomInt(min, max) {
+               return Math.floor(Math.random() * (max - min + 1) + min)
+     }
+	
+    function makeLyric() {	
+        $(document).ready(() => {
+            $('#poem').fadeIn();
+  });
+        playAudio();
+        hideButton();
+     // add line every 4 seconds
+        let random = getRandomInt(0, someText.length-1);
+        document.getElementById("poem").innerHTML = '<div id="poem">' + someText[random] + '</div';  
+        
+    //changes the font size each time
+        //let randFont = getRandomInt(10, 70);
+
+        //document.querySelector('#poem').innerHTML += `<div class=${messageClass[i]}>${someText[random]}</div>`;
+        setTimeout(makeLyric, 7000);
+    }
+
+
+    const genText = () => {
+        randPos(); //places text in a different place each time
+        hideBut(); //hides the initial button
+
+    }
+
+//psuedo code for the different functions that I need
+
+//1. A function to place the div in a different location each time
+//2. Changing the font size each time
+
+//3. play audio
+//4. hide button and animate it out
+
+
+//Play Audio
+const playAudio = () => {
+    audio.volume = 0.2;
+    audio.play();
+}
+
+const hideButton = () => {
+    document.getElementById("begin").style.display = "none";
+}
+
+
+
+</script>
+
+</body>
+</html>

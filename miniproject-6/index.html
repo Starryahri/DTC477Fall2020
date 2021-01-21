@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>canvas</title>
+	<style>
+
+	#myCanvas {
+		border: 1px solid black;
+		width: 600px;
+		height: 600px;
+	}
+
+	/*the height and width are the logical canvas dimensions used for drawing and are different from the style.height and style.width CSS attributes. If you don't set the CSS attributes, the intrinsic size of the canvas will be used as its display size; if you do set the CSS attributes, and they differ from the canvas dimensions, your content will be scaled in the browser. 
+	*/
+
+
+   </style>
+ </head>
+
+ <body>
+
+ 	<canvas width="400" height="400" id='myCanvas'>
+ 		
+ 	</canvas>
+
+
+   <script>
+
+
+       // Random Generator
+       function getRandomInt(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}  
+
+        // grab dom element
+       	let c = document.getElementById("myCanvas");
+
+       	//context identifier defining the drawing context associated to the canvas - 2D, wbgl (3D)
+	    let ctx = c.getContext("2d");
+			
+        
+        function drawFace() {
+
+
+            // x and y coordinates for eyeballs
+	        let EyeballX = getRandomInt(150, 155),
+	        	EyeballY = getRandomInt(150, 155);
+	        
+	        //eyesize
+	        let randnum1 = getRandomInt(3, 100);
+	        //noseshape
+	        let randnum2 = getRandomInt(0, 30);
+	        let randnum3 = getRandomInt(5, 10);
+	        //mouthshape
+	        let randnum4 = getRandomInt(50, 300);
+	        //face
+	        let colindex = getRandomInt(0, 9)
+			 //clear a rectangle of the canvas - wipe clean the slate for new drawing
+			 //context.clearRect(x,y,width,height);
+	        ctx.clearRect(0, 0, ctx.width, ctx.height);
+
+    			
+
+             // beginPath() method begins a path, or resets the current path - start and stop at different points
+			ctx.beginPath();
+	        // FACE
+            ctx.arc(200, 180, 160, 0, 2*Math.PI); 
+            //	context.arc(x,y,radius,startAngle,endAngle,counterclockwise(optional));
+            ctx.fillStyle = "#afa" + colindex;
+                ctx.fill();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "black";
+            ctx.stroke();
+                // end drawing of head
+			ctx.closePath();
+
+
+
+
+              // start another drawing for mouth (half circle)
+			ctx.beginPath();
+	        // MOUTH
+			ctx.moveTo(150, 260);
+			ctx.arc(200, randnum4, randnum1, 0, Math.PI); 
+            // Mouth (clockwise)
+			ctx.fillStyle = "white";
+            ctx.fill();
+            // end drawing of mouth
+			ctx.closePath();
+
+            // Left Eye
+			ctx.moveTo(170, 150);
+			ctx.arc(150, 150, randnum2, 0, 2*Math.PI); 
+			ctx.fillStyle = "white";
+                ctx.fill();
+
+			//Right Eye
+			ctx.moveTo(270, 150);
+			ctx.arc(250, 150, randnum1, 0, 2*Math.PI); 
+			ctx.fillStyle = "white";
+                ctx.fill();
+
+			// NOSE
+		    ctx.moveTo(210, 150);
+			ctx.arc(210, 230, randnum2, randnum3, Math.PI); // Mouth (clockwise)
+
+			// Left Eyebrow
+			ctx.moveTo(90, 120);
+			ctx.lineTo(180, 100);
+			
+
+			// Right Eyebrow
+			ctx.moveTo(310, 120);
+			ctx.lineTo(220, 100);  
+
+
+			// Left Eyeball
+			ctx.moveTo(180, 170);
+			ctx.fillStyle = "black";
+			ctx.fillRect(EyeballX, EyeballY, 5, 5);
+			//context.fillRect(x,y,width,height);
+	
+
+			//Right Eyeball
+			ctx.moveTo(280, 170);
+			ctx.fillStyle = "black";
+			ctx.fillRect(EyeballX + 100,EyeballY,5,5);
+
+
+			// Make lines visible
+			ctx.stroke();
+            
+    	} // end drawFace function
+
+  
+
+         // function to run to redraw face
+    	function animateFace() {
+
+    			ctx.clearRect(0, 0, ctx.width, ctx.height);//clear canvas
+
+                drawFace();
+    		    //setTimeout(animateFace, 1000);
+    		    //requestAnimationFrame(animateFace);
+    	}
+
+    	setInterval(animateFace, 1000);
+
+        
+        //animateFace();
+            
+	
+
+    
+    </script>
+ </body>
+ </html>

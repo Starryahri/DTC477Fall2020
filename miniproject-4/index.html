@@ -1,0 +1,187 @@
+    <!DOCTYPE html>
+    
+    
+    <html>
+
+    <head>
+
+    <title>jquery play template</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js">
+</script>
+
+	
+
+<style>
+ body  {
+     background-color: #ffffff; 
+     font-family: futura, helvetica, arial, sans-serif 
+ }
+ 
+ #wrapper {
+     background-color: #ffffff; 
+     width: 800px; 
+     height: 600px; 
+     margin: 20px auto; 
+     border: 1px dotted #000000; 
+     padding: 20px;
+ } 
+ 
+ 
+ 
+ #box  {
+     margin: 50px auto 0 auto;
+     padding: 0px;
+     background-color: #ffffff; 
+     background-repeat: no-repeat; 
+     width: 400px;
+     width: 400px;
+     overflow: hidden;
+ }
+ 
+ #box img {
+     width: 100%;
+ }
+ 
+ 
+ p {
+     margin: 30px auto;
+     background-color: #ffffff; 
+     width: 400px;
+     height: 100px;
+     border: 0px solid #000000; 
+     padding: 10px; 
+ }	
+
+ h1 {
+     margin: 10px auto;
+     text-align: center;
+ }
+ 
+
+ button  {
+     border: 1px black solid;
+     display: block;
+     margin: 20px auto;
+ }
+ 
+ 
+</style>
+	
+<script>
+ let imgArray = [
+     ['./img/step1.jpg', 'Step 1', 'Gather all the ingredients. You will need an onion, green onions, very thinly sliced beef, egg, sugar, mirin, sake, soy sauce, and kizami ginger (a bright pink variation of pickled ginger).'],
+     ['./img/step2.jpg', 'Step 2', 'Slice the onions, cut the green onion into thin slices (save for garnish), and cut the meat into small pieces.'],
+     ['./img/step3.jpg', 'Step 3', 'Heat the oil in a large frying pan over medium high heat and cook the onions until tender.'],
+     ['./img/step4.jpg', 'Step 4', 'Add the meat and sugar and cook until no longer pink.'],
+     ['./img/step5.jpg', 'Step 5', 'Add sake, mirin, and soy sauce.'],
+     ['./img/step6.jpg', 'Step 6', 'Reduce the heat and simmer for 2-3 minutes.'],
+     ['./img/step7.jpg', 'Step 7', 'If you like to add the egg, slowly and evenly drizzle the beaten egg over the beef. Cook covered until the egg is done. Add the green onion right before removing from the heat.'],
+     ['./img/step8.jpg', 'Step 8', 'Place the beef and egg on top of steamed rice, pour the desired amount of cooking sauce, and top with green onion and pickled red ginger.']
+ ];
+
+
+ $(document).ready(function(){   //this opens the document ready function
+     //Hide navigation buttons and initialize array index to -1;
+     $('h2').hide();
+     $('#right').hide();
+     $('#left').hide();
+     let i = -1;
+
+     //Start button LETS MAKE GYUDON
+     $('#start').click(function() {
+	 i++;
+	 let imgUrl = imgArray[i][0];
+	 let imgDescrip = imgArray[i][1];
+	 let imgDetail = imgArray[i][2];
+	 
+	 $('#box').fadeOut('1000', function(){
+      	     $(this).html('<img src="'+imgUrl+'" />');
+     	 }).fadeIn('1000');
+	 
+	 $('h2').show();
+     	 $('p').html(imgDetail);
+	 $('h2').html(imgDescrip);
+	 $('#right').show();
+	 $('#start').hide();
+	 $('h1').hide();
+	 $('h3').hide();
+	 
+     });
+
+     //Move to next element in array
+     $('#right').click(function() {
+	 i++;
+	 let imgUrl = imgArray[i][0];
+	 let imgDescrip = imgArray[i][1];
+	 let imgDetail = imgArray[i][2];
+
+	 //Logic to hide next button when at the end of array
+
+	 if(i === 0) {$('#left').hide();}
+	 else {$('#left').show();}		 
+	 if(i === imgArray.length-1) {$('#right').hide();}
+	 //super helpful and will most likely use this logic block in future project
+
+	 //making sure array can't go out of bounds above array length - 1
+	 if(i >= imgArray.length-1) {i = imgArray.length-1;}
+         $('#box').fadeOut('1000', function(){
+      	     $(this).html('<img src="'+imgUrl+'" />');
+     	 }).fadeIn('1000');
+	 
+	 $('h2').show();
+     	 $('p').html(imgDetail);
+	 $('h2').html(imgDescrip);
+     });
+
+     //Move to previous element in array
+     $('#left').click(function() {
+	 i--;
+	 let imgUrl = imgArray[i][0];
+	 let imgDescrip = imgArray[i][1];
+	 let imgDetail = imgArray[i][2];
+
+	 //Logic to hide previous button when at the beggining of array
+	 if(i === imgArray.length-1) {$('#right').hide();}
+	 else { $('#right').show();}
+	 if(i === 0) {$('#left').hide();}
+
+	 //making sure array can't go out of bounds below zero
+	 if(i <= 0) {i=0;}
+	 
+         $('#box').fadeOut('1000', function(){
+      	     $(this).html('<img src="'+imgUrl+'" />');
+     	 }).fadeIn('1000');
+
+	 $('h2').show();
+     	 $('p').html(imgDetail);
+	 $('h2').html(imgDescrip);
+     });
+     
+
+
+ });  //this closes the document ready function
+ 
+</script>
+
+
+    </head>
+
+    <body>
+    
+    <div id="wrapper">
+    
+    <div id="box"><img src="./img/step8.jpg"></div>
+
+    <h2>First Step</h2>
+    <h1>How to Make Gyudon</h1>
+    <h3 style="font-size: 0.8em; text-align: center;"><a href="https://www.justonecookbook.com/gyudon/">Credit: Just One Cookbook</a></h3>
+    <p>Gyudon is a Japanese rice bowl. The dish is typically a fast food staple in Japan and has many different variations and is great at any time of day.</p>
+    <button id="start">Let's Make Gyudon!</button>
+    <button id="left" style="float:left; margin-left: 25%;">Previous Step</button>
+    <button id="right" style="float:right;margin-right: 25%;">Next Step</button>
+    </div>
+    
+    </body>
+
+    </html>
+

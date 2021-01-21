@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<meta name ="viewport" content="initial-scale=1, maximum-scale=1,user-scalble=no">
+	<title>A Year in Japan</title>
+	<script src="https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Staatliches&display=swap" rel="stylesheet">
+	<style>
+	 header {
+             position: fixed;
+             top: 0;
+             left: 1%;
+             width: 32%;
+             height: 50px;
+             background: darkred;
+             padding: 0%;
+         }
+	 
+	 body {
+	     background-image: url(img/cork-board.jpg);
+	     background-position: center;
+	     background-size: cover;
+	     background-color: #0E84E6;
+	     font-family: 'Montserrat', sans-serif;
+	 }
+	 
+	 #map_container {
+	     border: 5px #4E3524 solid;
+	     border-radius: 2%;
+	     background-color: #4E3524;
+	     position: absolute;
+	     right: 1%;
+	     top: 2%;
+	     width: 65%;
+	     height: 95%;
+	     z-index: 1;
+	 }
+
+	 #map {
+	     width: 100%;
+	     height: 100%;
+	     border-radius: 10%;
+	 }
+
+	 a {
+	 	display: block;
+	 	z-index: 6000;
+	 	width: 100%;
+	 	margin: 5% auto;
+	 	text-align: center;
+	 }
+
+	 a img {
+	 	width: 30%;
+	 }
+
+	 #content-wrapper {
+	     border: 2px solid pink;
+	     background-color: pink;
+	     border-radius: 4%;
+	     position: fixed;
+	     left: 2.5%;
+	     top: 6%;
+	     width: 29%;
+	     height: 87%;
+	     overflow: scroll;
+	     z-index: 5;
+	 }
+
+	 .highlights {
+	     margin: auto;
+	     margin-left: 10%;
+	     margin-top: 10%;
+	     width: 75%;
+	 }
+
+	 .highlights img {
+	 	 border: 15px solid white;
+	 	 border-bottom: 50px solid white;
+	 	 width: 100%;
+
+	 }
+	 #content {
+	     border: 2px solid black;
+	     width: 100%;
+	     height: 100%;
+	     margin: 1%;
+	     margin-top: 80px;
+	 }
+
+	 .marker {
+             background-image: url(img/icon.png);
+             background-size: cover;
+             width: 50px;
+             height: 50px;
+             border-radius: 50%;
+             cursor: pointer;
+	 }
+
+	 .places {
+	     margin-top: 20px;
+	     display: none;
+	 }
+
+	 #nagasaki {
+	     display: block;
+	 }
+
+	 h2 {
+	     text-align: center;
+	     margin-top: 5%;
+	     font-family: 'Staatliches', cursive, sans-serif;
+	     font-size: 2em;
+	 }
+
+	 h3 {
+	 	text-align: center;
+	 	margin-top: -7%;
+	     font-family: 'Staatliches', cursive, sans-serif;
+	     font-size: 1em;
+	 }
+	 
+	 p {
+	     margin: -7% auto;
+	     padding: 5%;
+	     padding-left: 7%;
+	 }
+
+	 button {
+	     position: absolute;
+             top: 5%;
+             left: 2%;
+             font-family: 'Montserrat', sans-serif;
+             font-size: .8em;
+             font-weight: bold;
+             padding: 1%;
+             z-index: 10;
+             background: white;
+	     	 display: none;
+	 }
+
+	 .pin {
+	 	 z-index: 5;
+	     position: fixed;
+	 }
+
+	 .pin img {
+	 	width: 10%;
+	 }
+	 
+	 #p1 {
+	 	top: 1%;
+	 	left: 33.5%;
+	 }
+
+	 #p2 {
+	 	width: 30%;
+	 	top: 1%;
+	 	left: 96.5%;
+	 }
+
+	 .extras {
+	 	width: 25%;
+	 	transform: rotate(-20deg);
+	 	z-index: 10000;
+	 }
+
+	</style>
+    </head>
+
+    <body>
+	<div class="pin" id="p1"><img src="./img/pin.png"></div>
+	<div class="pin" id="p2"><img src="./img/pin.png"></div>
+
+	<div id="map_container">
+	    <div id="map"></div>
+	    <button>RESET</button>
+	</div>
+
+	<div id="content-wrapper">
+		<div class="places" id="nagasaki">
+		    <h2>Highlights of Nagasaki</h2>
+		    <p>Going to Japan for a whole year was such an unforgettable experience. Its such an interesting small city but it is so rich with culture and history. Click around to see some of the different places around Nagasaki that I visited and a little anecdote that goes along with it. Click on the flag below to find out more information about Nagasaki.</p>
+		    <div class="highlights"><img src="./img/nagasaki.jpg"></div>
+		    <a href="https://en.wikipedia.org/wiki/Nagasaki"><img src="./img/nagasakiflag.png"></a>
+		</div>
+		<div class="places" id="nufs">
+		    <h2>Nagasaki University of Foreign Studies</h2>
+		    <h3>長崎外国語大学</h3>
+		    <p>The place where I spent most of my time. While I was here I studied many different aspects of Japanese culture, history, the language, and how to teach English. I made lots of life long friends here and think about them all the time. Lots of great memories were had here. When I wasn't at school I would spend some of my time in the dorms and hang out with the other students. I wish I could go back! Who knows maybe I might? The university is always on the lookout for new English teachers.</p>
+		     <div class="highlights"><img src="./img/nufs.jpg"></div>
+		</div>
+
+		<div class="places" id="unzen">
+		    <h2>Mount Unzen Onsen</h2>
+		    <h3>雲仙温泉</h3>
+
+		    <p>As part of welcoming us to a new place we were all invited to go on a tour of a famous volcano in the region, Mount Unzen. It last eruppted in 1991 and caused major devesation to the surrounding area. A memorial and muesum was errected around the town that was destroyed. Lots of the buildings are untouched and have been preserved over the past couple of decades. Nearer to the mountain a hotspring resort can be found. All of the water that is pumped into the facility is directly from the hot springs itself. Many people come for the supposed healing properties of the water in this area. </p>
+		    <div class="highlights"><img src="./img/unzen.jpg"></div>
+		</div>
+		<div class="places" id="chinatown">
+		    <h2>Nagasaki Chinatown</h2>
+		    <h3>長崎新地中華街</h3>
+		    <p>Going back in time to when Japan shut itself away from the world, Nagasaki was in unique position to be the only port open to trade with other countries. This led to Nagasaki becoming a melting pot of different cultures and customs. It has also led to Nagasaki having a huge dutch and chinese influeence on the food and people. There is such a huge population of foreigners that enventually it led to the creation of a small Chinatown in the heart of Nagasaki </p>
+		     <div class="highlights"><img src="./img/unzen.jpg"></div>
+		</div>
+		<div class="places" id="suwa">
+		    <h2>Suwa Shrine</h2>
+		    <h3>鎮西大社 諏訪神社</h3>
+		    <p>One of the biggest shrines in Nagasaki. It is a place where many festivals and celebrations take place. There is actually a place not to far away from this particular shrine where you can actually see the sunrise between the two peaks of mountains. Its said that it brings good fortune and luck to through the following year. Going to a shrine during new year's eve is a compeletely different experience if you had gone during a normal day. Many food stands of all sorts pop up along the many stairs it takes to get to the shrine itself and then once at the top. You are able to get hot sake, or hot amezake if you want something a bit sweeter. </p>
+		     <div class="highlights"><img src="./img/suwa.jpg"></div>
+		</div>
+		<div class="places" id="hypocenter">
+		    <h2>The Hypocenter</h2>
+		    <h3>爆心地公園</h3>
+		    <p>This is the place where one of two atomic bombs was dropped, the other being in Hiromshima. The Hypocenter is part of a larger memorial along with the Nagasaki Peace Garden. I have to say it was really quite unlike any expereience I've had before.d Just visiting and standing there and just taking in the area was really eiere. For me it was almost too quiet and was very still. Kind of a somber place but a time and place that needs to be remembered.</p>
+		     <div class="highlights"><img src="./img/unzen.jpg"></div>
+		</div>
+	</div>
+
+	<script>
+
+
+	 let geojson = {
+	     "type": "FeatureCollection",
+	     "features": [{
+		 "type": "Feature",
+		 "geometry": {
+		     "type": "Point",
+		     "coordinates": [129.841221, 32.814369]
+		 },
+		 "properties": {
+		     "title": "Nagasaki University of Foreign Studies",
+		     "description": "長崎外国語大学",
+		     "url": '#nufs'
+		 }
+	     }, {
+		 "type": "Feature",
+		 "geometry": {
+		     "type": "Point",
+		     "coordinates": [130.260854, 32.742002]
+		 },
+		 "properties": {
+		     "title": "Mount Unzen Onsen",
+		     "description": "雲仙温泉",
+		     "url": '#unzen'
+		 }
+	     }, {
+		 "type": "Feature",
+		 "geometry": {
+		     "type": "Point",
+		     "coordinates": [129.875934, 32.741529]
+		 },
+		 "properties": {
+		     "title": "Nagsaki Chinatown",
+		     "description": "長崎新地中華街",
+		     "url": '#chinatown'
+		 }
+	     }, {
+		 "type": "Feature",
+		 "geometry": {
+		     "type": "Point",
+		     "coordinates": [129.881922, 32.754520]
+		 },
+		 "properties": {
+		     "title": "Suwa Shrine",
+		     "description": "鎮西大社 諏訪神社",
+		     "url": '#suwa'
+		 }
+	     }, {
+		 "type": "Feature",
+		 "geometry": {
+		     "type": "Point",
+		     "coordinates": [129.863150, 32.773712]
+		 },
+		 "properties": {
+		     "title": "The Hypocenter",
+		     "description": "爆心地公園",
+		     "url": '#hypocenter'
+		 }}]
+	 };
+
+	 //Initializing Mapbox Environment    
+	 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RhcnJ5YWhyaSIsImEiOiJja2Z2cXZycjAwd2RyMnNtZnBlZTNtdWJsIn0.oRTo_7QI1X37Af9yqWS7gw';
+	 var map = new mapboxgl.Map({
+	     container: 'map', // contianer id
+	     style: 'mapbox://styles/mapbox/streets-v11', // style URL
+	     center: [130.046399, 32.781862], //starting position [lng, lat]
+	     zoom: 9.5
+	 });
+
+	 geojson.features.forEach(function(marker) {
+
+             // create a HTML element for each feature
+             let el = document.createElement('div');
+             el.className = 'marker';
+
+
+             el.addEventListener('click', function() {
+		 map.flyTo({
+                     center: marker.geometry.coordinates, 
+                     zoom: 18
+		 });
+		 // window.location = marker.properties.url;
+		 $('#nagasaki').fadeOut(1000);
+		 $('button').delay(3000).fadeIn(1000);
+		 $(marker.properties.url).delay(1000).fadeIn(1000);
+		 
+             });
+
+             
+
+             // make a marker for each feature and add it to the map
+             new mapboxgl.Marker(el)
+			 .setLngLat(marker.geometry.coordinates).addTo(map);
+
+
+	 });
+
+	 map.scrollZoom.disable();
+
+	 // Zoom out button
+	 $(document).ready(function(){
+	     $('button').on('click', function() {
+		 map.setZoom(9.5);
+		 map.setCenter([130.046399, 32.781862]);
+		 $(this).fadeOut(1000);
+		 $('.places').fadeOut(1000);
+		 $('#nagasaki').delay(1000).fadeIn(1000);
+	     })
+	 });
+
+	 
+	</script>
+    </body>

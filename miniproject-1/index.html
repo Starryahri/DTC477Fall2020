@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head> 
+<meta charset="utf-8">
+<style>
+body  {
+  padding: 0%;
+  margin: 0%;
+  overflow: hidden;
+  font-family: helvetica,sans-serif;
+  background-color: black;
+  }
+  
+#wrapper  {
+  border: 5px solid black;
+  margin: 0 auto;
+  width: 55%;
+  height: 950px;
+  border-radius: 100%;
+  }
+  
+.circle {
+  position: relative;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  margin: 1%;
+  border: 2px solid black;
+  position: relative;
+  opacity: 1;
+  float: left;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: right;
+  line-height: 60px;
+  background: url("./img/gandalf_happy.gif") no-repeat center; 
+  background-size: 150%;
+}
+
+.circle p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button {
+	position: absolute;
+	top: 5px;
+	left: 100px;
+	margin: 0% auto;
+	background-color: gray;
+	text-decoration: none;
+	padding: 10%;
+	border-radius: 50%;
+	font-weight: bolder;
+	font-size: 3.5rem;
+	color: white;
+
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+<button id="button1" onclick="setCircles()">E P I C ?</button>
+
+<div id="wrapper">
+  <div class="circle"></div>
+  <audio id="audio" loop>
+  	<source src="epicsaxguy.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+    
+    // set a variable for the #wrapper
+	let wrapper = document.getElementById('wrapper');
+	//let wrapper = document.querySelector('#wrapper');
+	
+	//set a variable for the audio
+	let audio = document.getElementById('audio');
+
+	//set button var
+	let button = document.getElementById('button1');
+    // create a function to multiply circles
+	function  setCircles()  {
+		button.style.display = "none";
+		//A loop to get to 200 circles
+		  for(let i=0; i<9; i++) {
+			  wrapper.insertAdjacentHTML('beforeend', '<div class="circle"></div>');
+			  //wrapper.innerHTML += '<div class="circle"></div>';
+		  }
+
+		  playMusic();
+
+		  // run the function to change position and color of each circle
+		  changeColors();
+
+		  // create animation of change
+		  //setInterval(changeColors, 500);
+	} 
+	
+	//play some audio function
+	const playMusic = () => {
+		audio.play();
+	}
+
+	// set a variable to count thru the colors array (below)
+	let colorcount = -1;
+
+	// select a random color
+	let randmcolor = '#'+ Math.random().toString(16).substr(2,6); // or prompt('Name your color:');
+	
+	//console.log(Math.random());
+	//console.log(Math.random().toString(16));
+	//console.log(Math.random().toString(16).substr(2,6));
+	//console.log(randmcolor);
+	
+
+	// create a function to change position and color for EACH circle
+	function  changeColors()  {
+
+		// this sets up a stored list (an array) for colors
+		  let colors = [ randmcolor, 'green', 'blue', 'yellow', 'orange', 'purple'];
+
+		  // set a variable for all circles
+	      let circles = document.getElementsByClassName('circle');
+		  
+		  // increment (increase by 1) the count of the colors array
+	      colorcount++;
+	      // if the count reaches the end of the array list, go back to the beginning
+	      if (colorcount >= colors.length) { colorcount = 0; }
+        
+
+          // change the background of the wrapper to the selected item of the colors array
+         wrapper.style.backgroundColor = colors[colorcount];
+    
+           // create a loop to change the position in (relative) and color for each circle individually
+         for(let i = 0; i < circles.length; i++){
+
+         	// anorher random color selector
+	        let randmcolor ='#'+Math.random().toString(16).substr(2,6);
+	        // some random numbers for positioning
+		 	let num1 = Math.round(Math.random() * 1000);
+		 	let num2 = Math.round(Math.random() * 500);
+		 	let num3 = Math.round(Math.random() * 200);
+		 	let num4 = Math.round(Math.random() * 200);
+		 	// set a variable for an individual circle
+		    let thisCircle = circles[i]; 
+
+		    // change background-color for an individual circle
+		    thisCircle.style.backgroundColor = randmcolor;
+		    // change top relative position for an individual circle
+            thisCircle.style.top = num1 + 'px'; 
+             // change left relative position for an individual circle
+           thisCircle.style.left = num2 + 'px'; 
+            // change z-index for an individual circle
+            //thisCircle.style.zIndex = num3;
+            //changes size
+            thisCircle.style.height = num4 + 'px';
+            thisCircle.style.width = num4 + 'px';
+            
+		 }
+               setTimeout(changeColors, 460);
+	       
+	} //closes the changeColors() function 
+
+    
+     // create animation of change
+	//setInterval(changeColors, 1000);
+	
+
+
+</script>
+
+
+</body>
+</html>

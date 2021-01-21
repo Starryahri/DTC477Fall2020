@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>COLLIDITRON</title>
+  <style>
+    @font-face {
+      font-family: 'pressstart';
+      src: url('press_start/PrStart.ttf');
+      font-weight: 400;
+      font-weight: normal;
+    }
+    body {
+      margin-left: 19%;
+      border: 25px ridge black;
+      width: 60%;
+      background: black;
+    }
+
+    canvas {
+      border: 3px ridge grey;
+      margin: 15%;
+      margin-top: -10%;
+      width: 70%;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    #wrapper {
+      margin: 10%;
+      margin-top: 5%;
+      width: 80%;
+    }
+    h1, p {
+      color: white;
+      text-align: center;
+      font-family: 'pressstart';
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <div style="font-family:'press_start'; position: absolute; left:-1000px; visibility:hidden;">.</div>
+  
+  <div id="wrapper">
+  <img src="assets/logo.png">
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
+  <script defer src="game.js"></script>
+  <h1>A game by Ahria Nicholas</h1>
+  <div id="info">
+    <p>A game made in about 2 weeks using the Phaser 3 framework.
+    Music was all gathered from freemusicarchive.com.</p>
+  </div>
+  </div>
+  
+  
+</body>
+
+</html>
