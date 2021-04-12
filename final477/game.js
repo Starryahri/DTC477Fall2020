@@ -26,10 +26,10 @@ class GameMain extends Phaser.Scene {
     
     preload() {
         //Uncomment this when you are ready to publish playable build on website
-        this.load.setBaseURL('http://dtc-wsuv.org/anicholas20/final477');
+        this.load.setBaseURL('https://dtc-wsuv.org/anicholas20/final477');
     
         //Scripts and Plugins
-        this.load.script('WeaponPlugin', '/node_modules/phaser3-weapon-plugin/dist/WeaponPlugin.js', 'WeaponPlugin', 'weapons');
+        //this.load.script('WeaponPlugin', '/node_modules/phaser3-weapon-plugin/dist/WeaponPlugin.js', 'WeaponPlugin', 'weapons');
     
         //Images and Sprites
         this.load.image('ship', 'assets/ship.png');
