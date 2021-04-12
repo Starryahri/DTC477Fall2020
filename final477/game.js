@@ -355,7 +355,7 @@ class GameStart extends Phaser.Scene {
         let titleScreen = this.sound.add('startscreen');
         titleScreen.play(m_titleConfig);
         let titleText = this.add.text(200, 520, 'Press Space to Start', { fontFamily: 'pressstart', fontSize: '20px', fill: '#FFFFFF' });
-        this.add.text(700, 380, 'v1.0', { fontFamily: 'pressstart', fontSize: '20px', fill: '#FFFFFF' });
+        this.add.text(700, 380, 'v1.1', { fontFamily: 'pressstart', fontSize: '20px', fill: '#FFFFFF' });
         this.tweens.add({
             targets: titleText,
             y: 515,
